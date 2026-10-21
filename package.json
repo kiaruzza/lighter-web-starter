@@ -1,0 +1,30 @@
+{
+  "name": "lighter-web-starter",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "A lightweight, accessible static website template extracted from chiaracorrado.dev",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "validate:html": "html-validate 'dist/**/*.html'",
+    "check:links": "node scripts/check-links.mjs dist",
+    "measure:weight": "node scripts/measure-page-weight.mjs dist",
+    "check:budget": "node scripts/check-budget.mjs dist",
+    "test:a11y": "node scripts/test-a11y.mjs",
+    "test": "npm run build && npm run validate:html && npm run check:links && npm run check:budget && npm run test:a11y"
+  },
+  "dependencies": {
+    "astro": "7.3.3"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.54.2",
+    "html-validate": "^11.6.2"
+  }
+}

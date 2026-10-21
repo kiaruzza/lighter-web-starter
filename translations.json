@@ -1,0 +1,40 @@
+{
+  "languages": [
+    "en",
+    "it"
+  ],
+  "documents": [
+    {
+      "it": "README.it.md",
+      "en": "README.md"
+    },
+    {
+      "it": "ORIGINE.md",
+      "en": "ORIGIN.md"
+    },
+    {
+      "it": "docs/README.md",
+      "en": "docs/en/README.md"
+    },
+    {
+      "it": "docs/ACCESSIBILITA.md",
+      "en": "docs/en/ACCESSIBILITY.md"
+    },
+    {
+      "it": "docs/ARCHITETTURA.md",
+      "en": "docs/en/ARCHITECTURE.md"
+    },
+    {
+      "it": "docs/IMMAGINI.md",
+      "en": "docs/en/IMAGES.md"
+    },
+    {
+      "it": "docs/RILASCIO.md",
+      "en": "docs/en/RELEASE.md"
+    },
+    {
+      "it": "docs/SOSTENIBILITA.md",
+      "en": "docs/en/SUSTAINABILITY.md"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+---
+import '../styles/site.css';
+import printStylesheetUrl from '../styles/print.css?url';
+import { copy, paths, locales, type Locale, type Page } from '../data/site';
+import Icon from '../components/Icon.astro';
+interface Props { title: string; description?: string; noindex?: boolean; locale: Locale; page: Page; }
+const { title, description, noindex = false, locale, page } = Astro.props;
+const text = copy[locale];
+const canonical = new URL(paths[locale][page], Astro.site);
+const summary = description ?? text.description;
+---
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} | {text.name}</title>
+    <meta name="description" content={summary} />
+    {noindex ? <meta name="robots" content="noindex, follow" /> : <>
+      <link rel="canonical" href={canonical} />
+      {locales.map(language => <link rel="alternate" hreflang={language} href={new URL(paths[language][page], Astro.site)} />)}
+    </>}
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={summary} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={locale === 'it' ? 'it_IT' : 'en_GB'} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href={printStylesheetUrl} media="print" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">{text.skip}</a>
+    <header class="site-header">
+      <nav aria-label={text.navigation}>
+        <a href={paths[locale].home} aria-current={page === 'home' ? 'page' : undefined}><Icon name="leaf" />{text.name}</a>
+        <a href={paths[locale].project} aria-current={page === 'project' ? 'page' : undefined}>{text.project}</a>
+      </nav>
+      <nav class="language-nav" aria-label={text.languages}>
+        <a href={paths.it[page]} lang="it" hreflang="it" aria-current={locale === 'it' ? 'page' : undefined}>Italiano</a>
+        <a href={paths.en[page]} lang="en" hreflang="en" aria-current={locale === 'en' ? 'page' : undefined}>English</a>
+      </nav>
+    </header>
+    <main id="main-content" class="site-main" tabindex="-1"><slot /></main>
+    <footer class="site-footer"><p>{text.footer}</p></footer>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+@page {
+  margin: 1.5cm;
+}
+
+*,
+*::before,
+*::after {
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+html,
+body {
+  color: #000 !important;
+  background: #fff !important;
+}
+
+.site-header,
+.site-footer,
+.hero-art,
+.skip-link,
+.theme-toggle {
+  display: none !important;
+}
+
+.site-main {
+  width: 100%;
+  max-width: none;
+  padding: 0;
+}
+
+a {
+  color: inherit !important;
+  text-decoration: underline;
+}

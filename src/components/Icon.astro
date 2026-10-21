@@ -1,0 +1,12 @@
+---
+interface Props { name: 'leaf' | 'book' | 'check'; }
+const { name } = Astro.props;
+const shapes = {
+  leaf: 'M20 4C10 2 3 7 4 14c1 7 10 8 14 2 2-3 2-7 2-12ZM5 20 16 9',
+  book: 'M12 6C8 3 4 4 3 5v14c3-2 6-2 9 0 3-2 6-2 9 0V5c-3-2-6-2-9 1Zm0 0v13',
+  check: 'm5 12 4 4L19 6',
+};
+---
+<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  <path d={shapes[name]} />
+</svg>

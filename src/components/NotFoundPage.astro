@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { copy, paths, type Locale } from '../data/site';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const text = copy[locale];
+---
+<BaseLayout title={text.notFound} locale={locale} page="notFound" noindex>
+  <h1>{text.notFound}</h1>
+  <p>{text.moved}</p>
+  <a href={paths[locale].home}>{text.back}</a>
+</BaseLayout>

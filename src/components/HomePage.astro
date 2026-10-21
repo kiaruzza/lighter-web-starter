@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from './Icon.astro';
+import { site, copy, paths, type Locale } from '../data/site';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const text = copy[locale];
+---
+<BaseLayout title={text.home} locale={locale} page="home">
+  <h1>{text.headline}</h1>
+  <p class="lede">{text.lede}</p>
+  <section aria-labelledby="principles">
+    <h2 id="principles"><Icon name="check" />{text.principles}</h2>
+    <ul>{text.choices.map(choice => <li>{choice}</li>)}</ul>
+  </section>
+  <section aria-labelledby="start">
+    <h2 id="start"><Icon name="book" />{text.start}</h2>
+    <p>{text.customize}</p>
+    <p><a href={paths[locale].project}>{text.discover}</a></p>
+    <p><a href={`mailto:${site.email}`}>{text.contact}</a></p>
+  </section>
+</BaseLayout>

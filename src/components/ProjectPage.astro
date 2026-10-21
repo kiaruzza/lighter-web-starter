@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from './Icon.astro';
+import { copy, paths, type Locale } from '../data/site';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const text = copy[locale];
+---
+<BaseLayout title={text.project} description={text.projectDescription} locale={locale} page="project">
+  <h1>{text.project}</h1>
+  <p>{text.origin}</p>
+  <h2><Icon name="book" />{text.native}</h2>
+  <details><summary>{text.question}</summary><p>{text.answer}</p></details>
+  <h2><Icon name="check" />{text.budget}</h2>
+  <p>{text.budgetCopy}</p>
+  <p><a href={paths[locale].home}>{text.back}</a></p>
+</BaseLayout>
